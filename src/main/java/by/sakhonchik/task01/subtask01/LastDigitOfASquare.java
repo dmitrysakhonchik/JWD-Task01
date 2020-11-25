@@ -9,10 +9,10 @@ public class LastDigitOfASquare {
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        getAnswer();
+        getLastDigitOfASquare();
     }
 
-    public static void getAnswer() {
+    public static void getLastDigitOfASquare() {
         String numberEnteredByUser;
         System.out.println("Enter number:");
         while (!isCorrectDigit(numberEnteredByUser = scanner.nextLine())) {
