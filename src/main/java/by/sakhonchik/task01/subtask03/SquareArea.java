@@ -1,33 +1,26 @@
 package by.sakhonchik.task01.subtask03;
 
-import java.util.Scanner;
-
 public class SquareArea {
-    private static final Scanner scanner = new Scanner(System.in);
 
-    public static void main(String[] args) {
-        getAnswer();
-    }
-
-    public static void getAnswer() {
+    public double getSquareArea(String externalSquareArea) {
         double answer;
         double sideOfASquare;
         double circleRadius;
         double innerSquareArea;
-        double externalSquareArea;
+        double exSquareArea;
 
-        externalSquareArea = getExternalSquareArea();
-        sideOfASquare = Math.sqrt(externalSquareArea);
+        exSquareArea = getExternalSquareArea(externalSquareArea);
+        sideOfASquare = Math.sqrt(exSquareArea);
         circleRadius = sideOfASquare / 2;
         innerSquareArea = 0.5 * circleRadius * circleRadius * 4;
-        answer = externalSquareArea / innerSquareArea;
-        System.out.println("The area of the inscribed square is "
-                + answer + " times less than the specified area");
+        answer = exSquareArea / innerSquareArea;
+
+        return answer;
     }
 
-    public static boolean isCorrectDigit(String numberEnteredByUser) {
+    public boolean isCorrectDigit(String numberEnteredByUser) {
         try {
-            int number = Integer.parseInt(numberEnteredByUser);
+            double number = Double.parseDouble(numberEnteredByUser);
             return number > 0;
 
         } catch (NumberFormatException exception) {
@@ -35,14 +28,13 @@ public class SquareArea {
         }
     }
 
-    public static int getExternalSquareArea() {
-        String numberEnteredByUser;
-        System.out.println("Enter external square area:");
-        while (!isCorrectDigit(numberEnteredByUser = scanner.nextLine())) {
-            System.out.println("Incorrect value");
-            System.out.println("Enter external square area:");
+    public double getExternalSquareArea(String number) {
+        double externalSquareArea = 0;
+        if (isCorrectDigit(number)) {
+            externalSquareArea = Double.parseDouble(number);
+            return externalSquareArea;
         }
-        return Integer.parseInt(numberEnteredByUser);
+        return externalSquareArea;
     }
 
 

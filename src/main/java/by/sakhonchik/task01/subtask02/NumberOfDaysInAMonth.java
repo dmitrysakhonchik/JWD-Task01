@@ -1,28 +1,28 @@
 package by.sakhonchik.task01.subtask02;
 
 import java.time.YearMonth;
-import java.util.Scanner;
 
 /**
  * @author Dmitry Sakhonchik
  */
 public class NumberOfDaysInAMonth {
-    private static final Scanner scanner = new Scanner(System.in);
 
-    public static void main(String[] args) {
-        getAnswer();
+
+    public int getAmountOfDays(String year, String month) {
+        YearMonth yearMonthObject;
+        int daysInMonth = 0;
+
+        if (isCorrectYearDigit(year) && isCorrectMonthDigit(month)) {
+            int yyyy = Integer.parseInt(year);
+            int mm = Integer.parseInt(month);
+            yearMonthObject = YearMonth.of(yyyy, mm);
+            daysInMonth = yearMonthObject.lengthOfMonth();
+        }
+        return daysInMonth;
     }
 
-    public static void getAnswer() {
-        int month = getMonth();
-        int year = getYear();
-        YearMonth yearMonthObject = YearMonth.of(year, month);
-        int daysInMonth = yearMonthObject.lengthOfMonth();
-        System.out.println("Number of days " + daysInMonth);
-    }
 
-
-    public static boolean isCorrectMonthDigit(String numberEnteredByUser) {
+    public boolean isCorrectMonthDigit(String numberEnteredByUser) {
         try {
             int number = Integer.parseInt(numberEnteredByUser);
             return number > 0 && number <= 12;
@@ -32,7 +32,7 @@ public class NumberOfDaysInAMonth {
         }
     }
 
-    public static boolean isCorrectYearDigit(String numberEnteredByUser) {
+    public boolean isCorrectYearDigit(String numberEnteredByUser) {
         try {
             int number = Integer.parseInt(numberEnteredByUser);
             return number > 0;
@@ -40,26 +40,6 @@ public class NumberOfDaysInAMonth {
         } catch (NumberFormatException exception) {
             return false;
         }
-    }
-
-    public static int getMonth() {
-        String numberEnteredByUser;
-        System.out.println("Enter number of month:");
-        while (!isCorrectMonthDigit(numberEnteredByUser = scanner.nextLine())) {
-            System.out.println("Incorrect value");
-            System.out.println("Enter number of month:");
-        }
-        return Integer.parseInt(numberEnteredByUser);
-    }
-
-    public static int getYear() {
-        String numberEnteredByUser;
-        System.out.println("Enter number of year:");
-        while (!isCorrectYearDigit(numberEnteredByUser = scanner.nextLine())) {
-            System.out.println("Incorrect value");
-            System.out.println("Enter number of year:");
-        }
-        return Integer.parseInt(numberEnteredByUser);
     }
 
 
